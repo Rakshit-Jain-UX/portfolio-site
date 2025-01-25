@@ -61,11 +61,11 @@
                     fill="white"
                 />
             </svg>
-            <div class="flex items-center gap-8">
+            <div class="flex items-center">
                 <div>
                     <a
                         href="/"
-                        class="hover-header relative flex items-center h-full px-4 text-sm group"
+                        class="hover-header relative flex items-center h-full px-4 m group"
                     >
                         <span
                             class=" transition-all duration-300 group-hover:-translate-y-4 group-hover:opacity-0"
@@ -82,7 +82,7 @@
                 <div>
                     <a
                         href="/"
-                        class="hover-header relative flex items-center h-full px-4 text-sm group"
+                        class="hover-header relative flex items-center h-full px-4 group"
                     >
                         <span
                             class=" transition-all duration-300 group-hover:-translate-y-4 group-hover:opacity-0"
@@ -99,7 +99,7 @@
                 <div>
                     <a
                         href="/"
-                        class="hover-header relative flex items-center h-full px-4 text-sm group"
+                        class="hover-header relative flex items-center h-full px-4 group"
                     >
                         <span
                             class=" transition-all duration-300 group-hover:-translate-y-4 group-hover:opacity-0"
@@ -116,7 +116,7 @@
                 <div>
                     <a
                         href="/"
-                        class="hover-header relative flex items-center h-full px-4 text-sm group"
+                        class="hover-header relative flex items-center h-full px-4 group"
                     >
                         <span
                             class=" transition-all duration-300 group-hover:-translate-y-4 group-hover:opacity-0"
@@ -133,7 +133,7 @@
                 <div>
                     <a
                         href="/"
-                        class="hover-header relative flex items-center h-full px-4 text-sm group"
+                        class="hover-header relative flex items-center h-full px-4 group"
                     >
                         <span
                             class=" transition-all duration-300 group-hover:-translate-y-4 group-hover:opacity-0"
