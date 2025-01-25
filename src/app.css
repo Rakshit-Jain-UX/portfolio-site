@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+    font-family: OldSchoolGrotesk;
+    src: url("lib/fonts/OldschoolGrotesk-NormalRegular.otf");
+    font-display: swap;
+}
+body {
+    font-family: OldSchoolGrotesk;
+    background-color: rgba(14,15,17,1);
+    color: #fff;
+}
