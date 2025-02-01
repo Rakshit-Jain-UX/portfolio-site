@@ -6,20 +6,97 @@
     let lastScrollY = 0;
     let header;
     let isScrolled = false;
+    let isOpen = false;
+    let line1, line2, line3;
+    let windowInnerWidth = 0;
 
+    const toggleMenu = () => {
+        if (isOpen) {
+            gsap.to(header, {
+                duration: 0,
+                delay: 0.4,
+                borderRadius: "999px",
+            });
+            gsap.to(header, {
+                width: "256px",
+                height: "48px",
+                backgroundColor: "#26282ccc",
+            });
+            gsap.to(line1, {
+                rotation: 0,
+                x: 0,
+                duration: 0.3,
+                y: 0,
+            });
+            gsap.to(line2, { opacity: 1, duration: 0.3, rotate: 0 });
+            gsap.to(line3, {
+                rotation: 0,
+                x: 0,
+                duration: 0.3,
+                y: 0,
+            });
+        } else {
+            gsap.to(header, {
+                borderRadius: "10px",
+                duration: 0,
+            });
+            gsap.to(header, {
+                width: "90%",
+                backgroundColor: "#26282ccc",
+            });
+            gsap.to(header, {
+                height: "500px",
+                delay: 0.2,
+            });
+            gsap.to(line1, {
+                rotation: 45,
+                y: 1.5,
+                x: 2.5,
+                duration: 0.3,
+            });
+            gsap.to(line2, { opacity: 0, duration: 0.3, rotate: -45 });
+            gsap.to(line3, {
+                rotation: -45,
+                y: -6,
+                x: -0.5,
+                duration: 0.3,
+            });
+        }
+
+        isOpen = !isOpen;
+    };
     onMount(() => {
+        isOpen = false;
+        windowInnerWidth = window.innerWidth;
+
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY > 50) {
-                gsap.to(header, {
-                    width: "960px",
-                    backgroundColor: "#26282ccc",
-                });
+                if (windowInnerWidth > 991) {
+                    gsap.to(header, {
+                        width: "960px",
+                        backgroundColor: "#26282ccc",
+                    });
+                } else {
+                    if (!isOpen) {
+                        gsap.to(header, {
+                            width: "256px",
+                            backgroundColor: "#26282ccc",
+                        });
+                    }
+                }
             } else {
-                gsap.to(header, {
-                    width: "100%",
-                    backgroundColor: "rgba(0,0,0, 0)",
-                });
+                if (windowInnerWidth > 991) {
+                    gsap.to(header, {
+                        width: "100%",
+                        backgroundColor: "rgba(0,0,0, 0)",
+                    });
+                } else {
+                    gsap.to(header, {
+                        width: "90%",
+                        backgroundColor: "#26282ccc",
+                    });
+                }
             }
             if (currentScrollY > 400) {
                 if (currentScrollY > lastScrollY) {
@@ -29,13 +106,11 @@
                 }
             }
 
-            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Prevent negative scroll values
+            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
         };
 
-        // Add event listener for scroll
         window.addEventListener("scroll", handleScroll);
 
-        // Clean up the event listener when the component is destroyed
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
@@ -45,9 +120,9 @@
 <main>
     <header
         bind:this={header}
-        class="fixed top-0 left-0 w-full z-50 mx-auto flex p-[22px] my-3 rounded-full"
+        class="fixed top-0 left-0 w-full z-50 mx-auto flex p-[22px] sm:p-[14.5px] sm:items-start my-3 rounded-full overflow-hidden"
     >
-        <div class="flex justify-between items-center w-full">
+        <div class="flex justify-between items-center w-full relative">
             <svg
                 width="242"
                 height="48"
@@ -61,7 +136,7 @@
                     fill="white"
                 />
             </svg>
-            <div class="flex items-center">
+            <div class="flex items-center md:hidden">
                 <div>
                     <a
                         href="/"
@@ -148,12 +223,35 @@
                     </a>
                 </div>
             </div>
-            <div>
+            <div class="md:hidden">
                 <GooeyButton
                     buttonBgColor="rgba(208,255,113,1)"
                     buttonText="CONTACT ME"
                 />
             </div>
+            <div class="hidden md:block">
+                <!-- svelte-ignore a11y_click_events_have_key_events -->
+                <!-- svelte-ignore a11y_no_static_element_interactions -->
+                <div
+                    class="hamburger w h-4 flex justify-between flex-col cursor-pointer"
+                    on:click={toggleMenu}
+                >
+                    <div
+                        class="line bg-white h-0.5 w-5"
+                        style="transform-origin: left;"
+                        bind:this={line1}
+                    ></div>
+                    <div
+                        class="line bg-white h-0.5 w-5"
+                        bind:this={line2}
+                    ></div>
+                    <div
+                        class="line bg-white h-0.5 w-5"
+                        bind:this={line3}
+                    ></div>
+                </div>
+            </div>
+            <div class="hidden md:block absolute top-10 left-0">1</div>
         </div>
     </header>
 </main>
