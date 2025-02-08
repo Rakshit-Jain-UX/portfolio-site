@@ -8,6 +8,7 @@ export default {
         'OldSchoolGrotesk': ['OldSchoolGrotesk'],
       },
       screens: {
+        '4xl' : {min: '2400px', max: '3000px' },
         '2xl': { max: '2400px' },
         'xl': { max: '1500px' },
         'lg': { max: '1199px' },

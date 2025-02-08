@@ -12,10 +12,10 @@
 
     const toggleMenu = () => {
         if (isOpen) {
+            // Close menu animation
             gsap.to(header, {
                 duration: 0,
                 delay: 0.4,
-                borderRadius: "999px",
             });
             gsap.to(header, {
                 width: "256px",
@@ -35,17 +35,23 @@
                 duration: 0.3,
                 y: 0,
             });
-        } else {
-            gsap.to(header, {
-                borderRadius: "10px",
-                duration: 0,
+
+            // Animate links out when menu is closed
+            gsap.to(".menu-link", {
+                opacity: 0,
+                y: -20,
+                stagger: 0.1,
+                duration: 0.3,
             });
+            document.body.style.overflow = "auto";
+        } else {
+            // Open menu animation
             gsap.to(header, {
                 width: "90%",
                 backgroundColor: "#26282ccc",
             });
             gsap.to(header, {
-                height: "500px",
+                height: "380px",
                 delay: 0.2,
             });
             gsap.to(line1, {
@@ -61,10 +67,26 @@
                 x: -0.5,
                 duration: 0.3,
             });
+
+            gsap.fromTo(
+                ".menu-link",
+                {
+                    opacity: 0,
+                    y: -20,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.2,
+                    duration: 1,
+                },
+            );
+            document.body.style.overflow = "hidden";
         }
 
         isOpen = !isOpen;
     };
+
     onMount(() => {
         isOpen = false;
         windowInnerWidth = window.innerWidth;
@@ -100,7 +122,7 @@
             }
             if (currentScrollY > 400) {
                 if (currentScrollY > lastScrollY) {
-                    gsap.to(header, { y: "-120%", duration: 0.3 });
+                    gsap.to(header, { y: "-150%", duration: 0.3 });
                 } else {
                     gsap.to(header, { y: "0%", duration: 0.3 });
                 }
@@ -120,7 +142,7 @@
 <main>
     <header
         bind:this={header}
-        class="fixed top-0 left-0 w-full z-50 mx-auto flex p-[22px] sm:p-[14.5px] sm:items-start my-3 rounded-full overflow-hidden"
+        class="fixed top-0 left-0 w-full z-50 mx-auto flex p-[22px] sm:p-[14.5px] sm:items-start my-3 rounded-full sm:rounded-3xl overflow-hidden"
     >
         <div class="flex justify-between items-center w-full relative">
             <svg
@@ -251,7 +273,35 @@
                     ></div>
                 </div>
             </div>
-            <div class="hidden md:block absolute top-10 left-0">1</div>
+            <div class="hidden md:block absolute top-10 left-0">
+                <div>
+                    <p>Have a look around...</p>
+                </div>
+                <div class="link text-4xl my-3">
+                    <div class="sublink">
+                        <a href="/" class="menu-link translate-y-10">Home</a>
+                    </div>
+                    <div class="sublink">
+                        <a href="/" class="menu-link translate-y-10">About</a>
+                    </div>
+                    <div class="sublink">
+                        <a href="/" class="menu-link translate-y-10">Work</a>
+                    </div>
+                    <div class="sublink">
+                        <a href="/" class="menu-link translate-y-10">Blogs</a>
+                    </div>
+                    <div class="sublink">
+                        <a href="/" class="menu-link translate-y-10">Contact</a>
+                    </div>
+                </div>
+
+                <div class="md:block">
+                    <GooeyButton
+                        buttonBgColor="rgba(208,255,113,1)"
+                        buttonText="CONTACT ME"
+                    />
+                </div>
+            </div>
         </div>
     </header>
 </main>
