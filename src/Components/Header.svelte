@@ -142,7 +142,7 @@
 <main>
     <header
         bind:this={header}
-        class="fixed top-0 left-0 w-full z-50 mx-auto flex p-[22px] sm:p-[14.5px] sm:items-start my-3 rounded-full sm:rounded-3xl overflow-hidden"
+        class="fixed top-0 left-0 w-full z-50 mx-auto flex sm:p-[22px] p-[14.5px] items-start my-3 sm:rounded-full rounded-3xl overflow-hidden"
     >
         <div class="flex justify-between items-center w-full relative">
             <svg
@@ -158,7 +158,7 @@
                     fill="white"
                 />
             </svg>
-            <div class="flex items-center md:hidden">
+            <div class="hidden items-center sm:flex">
                 <div>
                     <a
                         href="/"
@@ -245,13 +245,13 @@
                     </a>
                 </div>
             </div>
-            <div class="md:hidden">
+            <div class="sm:block hidden">
                 <GooeyButton
                     buttonBgColor="rgba(208,255,113,1)"
                     buttonText="CONTACT ME"
                 />
             </div>
-            <div class="hidden md:block">
+            <div class="sm:hidden block">
                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <div
@@ -273,7 +273,7 @@
                     ></div>
                 </div>
             </div>
-            <div class="hidden md:block absolute top-10 left-0">
+            <div class="sm:hidden block absolute top-10 left-0">
                 <div>
                     <p>Have a look around...</p>
                 </div>
@@ -310,5 +310,6 @@
     header {
         left: 50%;
         transform: translateX(-50%);
+        backdrop-filter: blur(10px);
     }
 </style>
